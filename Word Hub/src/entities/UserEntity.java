@@ -74,6 +74,7 @@ public class UserEntity {
 
 	public static void main(String[] args) {
 		UserEntity user=new UserEntity("abc", "jdj", 45);
+		UserEntity ui;
 	}	
 	
 }
