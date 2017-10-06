@@ -33,6 +33,8 @@ public class SignUp extends JFrame {
 	private JLabel labelPassword;
 	private JPasswordField confirmPassField;
 	private JLabel confirmPassLabel;
+	private JPanel panel_2;
+	private JPanel pane_1;
 
 	/**
 	 * Launch the application.
@@ -87,11 +89,13 @@ public class SignUp extends JFrame {
 		});
 		
 		JLabel lblUsername = new JLabel("Create a Username:");
+		lblUsername.setForeground(Color.WHITE);
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblUsername.setBounds(61, 97, 242, 14);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Create a password:");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblPassword.setBounds(61, 156, 184, 23);
 		contentPane.add(lblPassword);
@@ -119,10 +123,14 @@ public class SignUp extends JFrame {
 		});
 		contentPane.add(passwordField);
 		
-		signUpButton = new JButton("SIGNUP & PLAY\r\n");
+		signUpButton = new JButton("REGISTER\r\n");
+		signUpButton.setBackground(Color.BLACK);
+		signUpButton.setForeground(Color.WHITE);
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addUser();
+				goToLogin();
+				
 			}
 		});
 		signUpButton.setEnabled(false);
@@ -140,20 +148,18 @@ public class SignUp extends JFrame {
 		contentPane.add(labelPassword);
 		
 		JButton backButton = new JButton("<");
+		backButton.setForeground(Color.WHITE);
+		backButton.setBackground(Color.BLACK);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				back();
 			}
 		});
-		backButton.setBounds(10, 11, 41, 23);
+		backButton.setBounds(10, 382, 41, 23);
 		contentPane.add(backButton);
 		
-		JLabel lblWelcomeToWordhub = new JLabel("Welcome to Wordhub registration, let's get started");
-		lblWelcomeToWordhub.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		lblWelcomeToWordhub.setBounds(61, 11, 695, 23);
-		contentPane.add(lblWelcomeToWordhub);
-		
 		JLabel labelConfirmPass = new JLabel("Confirm password:");
+		labelConfirmPass.setForeground(Color.WHITE);
 		labelConfirmPass.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		labelConfirmPass.setBounds(61, 228, 184, 23);
 		contentPane.add(labelConfirmPass);
@@ -166,6 +172,23 @@ public class SignUp extends JFrame {
 		confirmPassLabel.setForeground(Color.RED);
 		confirmPassLabel.setBounds(321, 293, 174, 14);
 		contentPane.add(confirmPassLabel);
+		
+		panel_2 = new JPanel();
+		panel_2.setBackground(new Color(0, 0, 0, 125));
+		panel_2.setBounds(49, 62, 491, 269);
+		contentPane.add(panel_2);
+		
+		JLabel lblWelcomeToWordhub = new JLabel("Welcome to Wordhub registration, let's get started");
+		lblWelcomeToWordhub.setBounds(49, 11, 479, 30);
+		contentPane.add(lblWelcomeToWordhub);
+		lblWelcomeToWordhub.setBackground(Color.WHITE);
+		lblWelcomeToWordhub.setForeground(Color.WHITE);
+		lblWelcomeToWordhub.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		
+		pane_1 = new JPanel();
+		pane_1.setBackground(new Color(0, 0, 0, 125));
+		pane_1.setBounds(49, 11, 491, 40);
+		contentPane.add(pane_1);
 
         confirmPassField.addKeyListener(new KeyListener() {
 			
@@ -185,6 +208,7 @@ public class SignUp extends JFrame {
 				
 			}
         });
+        Utils.setBackground(this, "src/images/homeBackground.jpg");
 	}
 	
 	public void matchPassword() {
@@ -213,6 +237,15 @@ public class SignUp extends JFrame {
 		if(userStatus==UserStatus.USER_EXISTS)
 			labelUsername.setText("Username Taken");
 			
+		
+	}
+	public void goToLogin() {
+		this.setVisible(false);
+		
+		Login login=new Login();
+		login.setVisible(true);
+		login.changeLabel("Your account has been created,login to continue");
+		
 		
 	}
 	public void back() {

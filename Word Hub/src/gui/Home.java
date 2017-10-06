@@ -10,10 +10,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.rmi.CORBA.Util;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import java.awt.Color;
+
 public class Home {
 
 	private JFrame frame;
-	private JLabel title;
 
 	/**
 	 * Launch the application.
@@ -53,15 +57,9 @@ public class Home {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		title = new JLabel("WELCOME TO WORD HUB");
-		title.setForeground(SystemColor.controlHighlight);
-		title.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 35));
-
-		title.setBackground(SystemColor.activeCaption);
-		title.setBounds(145, 104, 507, 157);
-		frame.getContentPane().add(title);
-		
 		JButton loginBtn = new JButton("LOGIN");
+		loginBtn.setForeground(Color.WHITE);
+		loginBtn.setBackground(Color.BLACK);
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				onLogin();
@@ -71,6 +69,8 @@ public class Home {
 		frame.getContentPane().add(loginBtn);
 		
 		JButton registerBtn = new JButton("REGISTER");
+		registerBtn.setBackground(Color.BLACK);
+		registerBtn.setForeground(Color.WHITE);
 		registerBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				onRegister();
@@ -78,6 +78,14 @@ public class Home {
 		});
 		registerBtn.setBounds(597, 272, 115, 23);
 		frame.getContentPane().add(registerBtn);
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.setBackground(new Color(255, 255, 255, 0));
+		titlePanel.setBounds(249, 104, 182, 182);
+		frame.getContentPane().add(titlePanel);
+		Utils.setBackground(titlePanel, "src/images/logo2.png");
+		
+		Utils.setBackground(frame,"src/images/homeBackground.jpg");
 	}
 	
 	private void onRegister() {

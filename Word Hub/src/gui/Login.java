@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class Login extends JFrame {
 
@@ -27,6 +28,8 @@ public class Login extends JFrame {
 	private JButton loginButton;
 	private JLabel label;
 	private JLabel lblLoginToWordhub;
+	private JPanel panel_2;
+	private JPanel panel_1;
 
 	/**
 	 * Launch the application.
@@ -62,11 +65,13 @@ public class Login extends JFrame {
 		loginField.setColumns(10);
 		
 		JLabel lblUsername = new JLabel("Username:");
+		lblUsername.setForeground(Color.WHITE);
 		lblUsername.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblUsername.setBounds(76, 112, 149, 14);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password:");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
 		lblPassword.setBounds(76, 211, 127, 14);
 		contentPane.add(lblPassword);
@@ -77,15 +82,19 @@ public class Login extends JFrame {
 		contentPane.add(passwordField);
 		
 		JButton backButton = new JButton("<");
+		backButton.setBackground(Color.BLACK);
+		backButton.setForeground(Color.WHITE);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				back();
 			}
 		});
-		backButton.setBounds(10, 11, 41, 23);
+		backButton.setBounds(10, 382, 41, 23);
 		contentPane.add(backButton);
 		
-		loginButton = new JButton("LET'S PLAY\r\n");
+		loginButton = new JButton("LOGIN\r\n");
+		loginButton.setForeground(Color.WHITE);
+		loginButton.setBackground(Color.BLACK);
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				loginUser();	
@@ -97,13 +106,26 @@ public class Login extends JFrame {
 		
 		label = new JLabel("");
 		label.setForeground(Color.RED);
-		label.setBounds(314, 259, 256, 14);
+		label.setBounds(455, 391, 256, 14);
 		contentPane.add(label);
 		
+		panel_2 = new JPanel();
+		panel_2.setForeground(Color.WHITE);
+		panel_2.setBackground(new Color(0, 0, 0, 125));
+		panel_2.setBounds(52, 85, 412, 246);
+		contentPane.add(panel_2);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(0, 0, 0, 125));
+		panel_1.setBounds(52, 11, 624, 39);
+		contentPane.add(panel_1);
+		
 		lblLoginToWordhub = new JLabel("Login to Wordhub ");
-		lblLoginToWordhub.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
-		lblLoginToWordhub.setBounds(76, 7, 305, 30);
-		contentPane.add(lblLoginToWordhub);
+		lblLoginToWordhub.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblLoginToWordhub);
+		lblLoginToWordhub.setForeground(Color.WHITE);
+		lblLoginToWordhub.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 19));
+		Utils.setBackground(this, "src/images/homeBackground.jpg");
 	}
 		
 		public void loginUser() {
@@ -129,6 +151,9 @@ public class Login extends JFrame {
 			
 			MainMenu menu=new MainMenu();
 			menu.show();
+		}
+		public void changeLabel(String label) {
+			lblLoginToWordhub.setText(label);
 	}
 }
 

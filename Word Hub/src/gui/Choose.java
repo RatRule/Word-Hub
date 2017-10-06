@@ -105,6 +105,7 @@ public class Choose extends JFrame {
 		levelPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		levelPanel.setBounds(10, 166, 311, 168);
 		contentPane.add(levelPanel);
+		Utils.setBackground(levelPanel, "src/images/cat.jpg");
 		
 		JButton btnNewButton = new JButton("PLAY");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
