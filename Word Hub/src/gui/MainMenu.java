@@ -65,6 +65,11 @@ public class MainMenu extends JFrame {
 		contentPane.add(labelHighscore);
 		
 		JButton playButton = new JButton("PLAY");
+		playButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				goToChoose();
+			}
+		});
 		playButton.setBounds(354, 282, 89, 43);
 		contentPane.add(playButton);
 		
@@ -90,4 +95,11 @@ public class MainMenu extends JFrame {
 		home.show();
 		Session.logout();
 	}
+	public void goToChoose() {
+		this.setVisible(false);
+		
+		Choose c=new Choose();
+		c.setVisible(true);
+	}
+	
 }
