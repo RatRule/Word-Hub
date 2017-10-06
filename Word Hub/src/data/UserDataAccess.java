@@ -172,11 +172,13 @@ public class UserDataAccess {
 	public static void main(String[] args) throws UserAlreadyExistException {
 	UserDataAccess userData=new UserDataAccess();
 	UserEntity u=new UserEntity("abc7","125",6764);
+	
+	
 	//userData.addUser(u);
 	userData.updateHighScore("abc4",15);
 	userData.updatePassword("abc4","123");
-	userData.deleteUser("abc4");
-	UserEntity ue = userData.getUser("abc4");
-	System.out.println(u);
+	userData.deleteUser("");
+	UserEntity ue = userData.getUser("");
+	System.out.println(userData.getUser(""));
 	
 }}
