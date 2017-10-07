@@ -129,7 +129,7 @@ public class SignUp extends JFrame {
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addUser();
-				goToLogin();
+				
 				
 			}
 		});
@@ -236,6 +236,8 @@ public class SignUp extends JFrame {
 			labelPassword.setText("Enter a Password");
 		if(userStatus==UserStatus.USER_EXISTS)
 			labelUsername.setText("Username Taken");
+		if(userStatus==UserStatus.VALID)
+			goToLogin();
 			
 		
 	}

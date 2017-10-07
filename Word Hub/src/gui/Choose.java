@@ -14,6 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.border.MatteBorder;
+
+import entities.Labels;
+
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
@@ -25,6 +28,8 @@ public class Choose extends JFrame {
 	private JPanel contentPane;
 	private final ButtonGroup categoryRadioGroup = new ButtonGroup();
 	private final ButtonGroup levelRadioGroup = new ButtonGroup();
+	String category;
+	String level;
 
 	/**
 	 * Launch the application.
@@ -111,15 +116,16 @@ public class Choose extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String level;
-				String category;
-				if(easyRadioButton.isSelected()) level = "easy";
-				if(mediumRadioButton.isSelected()) level = "medium";
-				if(hardRadioButton.isSelected()) level = "hard";
+				String level=null;
+				String category=null;
+				if(easyRadioButton.isSelected()) level = Labels.Levels.LEVEL1;
+				if(mediumRadioButton.isSelected()) level = Labels.Levels.LEVEL2;
+				if(hardRadioButton.isSelected()) level = Labels.Levels.LEVEL3;
 				
-				if(c1RadioButton.isSelected()) category = "Category 1";
-				if(c2RadioButton.isSelected()) category = "Category 2";
-				if(c3RadioButton.isSelected()) category = "Category 3";
+				if(c1RadioButton.isSelected()) category = Labels.Category.CATEGORY1;
+				if(c2RadioButton.isSelected()) category = Labels.Category.CATEGORY2;
+				//if(c3RadioButton.isSelected()) category = Labels.Category.CATEGORY3;
+				new GamePlay(category,level).setVisible(true);
 				
 				setVisible(false);
 			}

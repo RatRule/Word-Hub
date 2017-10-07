@@ -43,7 +43,7 @@ public class MainMenu extends JFrame {
 	UserEntity user;
 	
 	public MainMenu() {
-		
+		Session.setUserId("utsav");
 		user = new UserDataAccess().getUser(Session.getUserId());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,6 +85,11 @@ public class MainMenu extends JFrame {
 		});
 		logOutButton.setBounds(660, 373, 120, 32);
 		contentPane.add(logOutButton);
+		
+		JPanel logoPanel = new JPanel();
+		logoPanel.setBounds(308, 78, 182, 182);
+		contentPane.add(logoPanel);
+		Utils.setBackground(logoPanel, "src/images/logo2.png");
 	}
 	
 	
@@ -101,5 +106,4 @@ public class MainMenu extends JFrame {
 		Choose c=new Choose();
 		c.setVisible(true);
 	}
-	
 }

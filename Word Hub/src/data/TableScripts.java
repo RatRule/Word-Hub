@@ -1,9 +1,12 @@
 package data;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 import entities.Labels;
 
@@ -51,6 +54,51 @@ public class TableScripts {
 		}
 	}
 	
+	public static void insertAnimalsData() {
+		File animalsFile = new File("src/data/animals.txt");
+		try {
+			Scanner scanner = new Scanner(animalsFile);
+			String level = null;
+			int wordId = 1000;
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if(line.equalsIgnoreCase("$easy")) level = "EASY";
+				if(line.equalsIgnoreCase("$medium")) level = "MEDIUM";
+				if(line.equalsIgnoreCase("$hard")) level = "HARD";
+				
+				if(level == null || line.startsWith("$") || line.trim().isEmpty()) continue;
+				String animal = line.toLowerCase().trim();
+				insertWord(wordId, animal, "ANIMALS", level);
+				wordId++;
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private static void insertWord(int wordId, String word, String category, String level) {
+		Connection  connection = null;
+		String query = "insert into WORD_TABLE values("+wordId+", '"+word+"', '"+category+"', '"+level+"')";
+		System.out.println(query);
+		try{
+			Class.forName("org.sqlite.JDBC");
+			connection = DriverManager.getConnection("jdbc:sqlite:"+DATABASE_PATH);
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException("SQL EXCEPTION");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally{
+			if(connection != null)
+				try { connection.close();
+				} catch (SQLException e) {e.printStackTrace();}
+		}
+	}
+	
 	public static void recreateAllTables(){
 		TableScripts.runQuery(WORDTABLE_DROP_SQL);
 		TableScripts.runQuery(WORDTABLE_CREATE_SQL);
@@ -63,5 +111,6 @@ public class TableScripts {
 		System.out.println("Creating tables");
 		TableScripts.recreateAllTables();
 		System.out.println("Table created");
+		TableScripts.insertAnimalsData();
 	}
 }
