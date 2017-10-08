@@ -43,7 +43,7 @@ public class MainMenu extends JFrame {
 	UserEntity user;
 	
 	public MainMenu() {
-		Session.setUserId("utsav");
+//		Session.setUserId("utsav");
 		user = new UserDataAccess().getUser(Session.getUserId());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

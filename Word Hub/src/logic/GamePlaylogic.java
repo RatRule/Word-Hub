@@ -3,8 +3,10 @@ package logic;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import data.UserDataAccess;
 import data.WordDataAccess;
 import entities.Labels;
+import entities.UserEntity;
 
 public class GamePlaylogic {
 	String category;
@@ -64,6 +66,14 @@ public class GamePlaylogic {
 		else if(level.equals(Labels.Levels.LEVEL3))
 			currentScore=currentScore + 6 ;
 			
+	}
+	public void updateHighScore() {
+		UserEntity user = new UserDataAccess().getUser(Session.getUserId());
+		if(currentScore>user.getHighScore()) {
+			user.setHighScore(currentScore);
+			UserDataAccess userData=new UserDataAccess();
+			userData.updateHighScore(Session.getUserId(), user.getHighScore());
+		}
 	}
 	
 	

@@ -9,9 +9,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import data.UserDataAccess;
+import entities.UserEntity;
 import logic.ClockTimer;
 import logic.ClockTimer.ClockTimerListener;
 import logic.GamePlaylogic;
+import logic.Session;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -29,7 +33,7 @@ public class GamePlay extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GamePlay(String category,String level) {
+	public GamePlay(final String category,final String level) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 454);
 		contentPane = new JPanel();
@@ -68,7 +72,7 @@ public class GamePlay extends JFrame {
 		
 		final JLabel labelScorevalue = new JLabel(String.valueOf(gmLogic.getCurrentScore()));
 		labelScorevalue.setFont(new Font("Tahoma", Font.BOLD, 18));
-		labelScorevalue.setBounds(156, 37, 77, 31);
+		labelScorevalue.setBounds(156, 34, 77, 31);
 		contentPane.add(labelScorevalue);
 		
 		
@@ -85,13 +89,22 @@ public class GamePlay extends JFrame {
 		checkButton.setBounds(581, 289, 89, 39);
 		contentPane.add(checkButton);
 		
+		UserEntity user = new UserDataAccess().getUser(Session.getUserId());
+		
+		JLabel labelHighScoreValue = new JLabel(String.valueOf(user.getHighScore()));
+		labelHighScoreValue.setBounds(116, 7, 46, 27);
+		contentPane.add(labelHighScoreValue);
+		
 		ClockTimer timer=new ClockTimer(0,2,0,0);
 		timer.startTimer();
+		timer.setScale(1);
 		timer.setClockTimerListener(new ClockTimerListener() {
 			@Override
 			public void onTimerEnd(ClockTimer timer) {
-				
-				
+				setVisible(false);
+				gmLogic.updateHighScore();
+				EndGame endGame=new EndGame(gmLogic.getCurrentScore(),category,level);
+				endGame.setVisible(true);
 			}
 			@Override
 			public void onSecondsUpdate(ClockTimer timer) {

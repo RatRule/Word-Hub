@@ -179,6 +179,6 @@ public class UserDataAccess {
 	userData.updatePassword("abc4","123");
 	userData.deleteUser("utsav5");
 	UserEntity ue = userData.getUser("");
-	System.out.println(userData.getUser("utsav5"));
+	System.out.println(userData.getUser("utsav"));
 	
 }}

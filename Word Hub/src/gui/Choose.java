@@ -51,6 +51,7 @@ public class Choose extends JFrame {
 	 * Create the frame.
 	 */
 	public Choose() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 454);
 		contentPane = new JPanel();
@@ -63,21 +64,21 @@ public class Choose extends JFrame {
 		lblChooseACategory.setBounds(10, 11, 199, 30);
 		contentPane.add(lblChooseACategory);
 		
-		final JRadioButton c1RadioButton = new JRadioButton("Category 1\r\n");
-		c1RadioButton.setSelected(true);
-		categoryRadioGroup.add(c1RadioButton);
-		c1RadioButton.setBounds(212, 18, 97, 23);
-		contentPane.add(c1RadioButton);
+		final JRadioButton animalsRadioButton = new JRadioButton("Animals");
+		animalsRadioButton.setSelected(true);
+		categoryRadioGroup.add(animalsRadioButton);
+		animalsRadioButton.setBounds(212, 18, 97, 23);
+		contentPane.add(animalsRadioButton);
 		
-		final JRadioButton c2RadioButton = new JRadioButton("Category 2");
-		categoryRadioGroup.add(c2RadioButton);
-		c2RadioButton.setBounds(212, 44, 97, 23);
-		contentPane.add(c2RadioButton);
+		final JRadioButton countriesRadioButton = new JRadioButton("Countries");
+		categoryRadioGroup.add(countriesRadioButton);
+		countriesRadioButton.setBounds(212, 44, 97, 23);
+		contentPane.add(countriesRadioButton);
 		
-		final JRadioButton c3RadioButton = new JRadioButton("Category 3");
-		categoryRadioGroup.add(c3RadioButton);
-		c3RadioButton.setBounds(212, 70, 97, 23);
-		contentPane.add(c3RadioButton);
+		final JRadioButton sportsRadioButton = new JRadioButton("Sports");
+		categoryRadioGroup.add(sportsRadioButton);
+		sportsRadioButton.setBounds(212, 70, 97, 23);
+		contentPane.add(sportsRadioButton);
 		
 		JLabel lblNewLabel = new JLabel(" Choose a level:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
@@ -110,7 +111,7 @@ public class Choose extends JFrame {
 		levelPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		levelPanel.setBounds(10, 166, 311, 168);
 		contentPane.add(levelPanel);
-		Utils.setBackground(levelPanel, "src/images/cat.jpg");
+		//Utils.setBackground(levelPanel, "src/images/cat.jpg");
 		
 		JButton btnNewButton = new JButton("PLAY");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -122,9 +123,9 @@ public class Choose extends JFrame {
 				if(mediumRadioButton.isSelected()) level = Labels.Levels.LEVEL2;
 				if(hardRadioButton.isSelected()) level = Labels.Levels.LEVEL3;
 				
-				if(c1RadioButton.isSelected()) category = Labels.Category.CATEGORY1;
-				if(c2RadioButton.isSelected()) category = Labels.Category.CATEGORY2;
-				//if(c3RadioButton.isSelected()) category = Labels.Category.CATEGORY3;
+				if(animalsRadioButton.isSelected()) category = Labels.Category.CATEGORY1;
+				if(countriesRadioButton.isSelected()) category = Labels.Category.CATEGORY2;
+				if(sportsRadioButton.isSelected()) category = Labels.Category.CATEGORY3;
 				new GamePlay(category,level).setVisible(true);
 				
 				setVisible(false);
