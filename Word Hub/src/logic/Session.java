@@ -3,7 +3,7 @@ package logic;
 import javax.swing.JFrame;
 
 public class Session {
-	private static String userId;
+	private static String userId = "utsav";
 	
 	public static void invalidate(JFrame frame) {
 		frame.dispose();

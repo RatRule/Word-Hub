@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MainMenu extends JFrame {
+public class MainMenu extends BaseFrame {
 
 	private JPanel contentPane;
 
@@ -65,6 +66,8 @@ public class MainMenu extends JFrame {
 		contentPane.add(labelHighscore);
 		
 		JButton playButton = new JButton("PLAY");
+		playButton.setForeground(Color.WHITE);
+		playButton.setBackground(Color.BLACK);
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				goToChoose();
@@ -74,10 +77,14 @@ public class MainMenu extends JFrame {
 		contentPane.add(playButton);
 		
 		JButton howToPlayButton = new JButton("How to play?\r\n");	
+		howToPlayButton.setBackground(Color.BLACK);
+		howToPlayButton.setForeground(Color.WHITE);
 		howToPlayButton.setBounds(10, 373, 120, 32);
 		contentPane.add(howToPlayButton);
 		
 		JButton logOutButton = new JButton("LOG OUT");
+		logOutButton.setBackground(Color.BLACK);
+		logOutButton.setForeground(Color.WHITE);
 		logOutButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				logout();
@@ -89,7 +96,9 @@ public class MainMenu extends JFrame {
 		JPanel logoPanel = new JPanel();
 		logoPanel.setBounds(308, 78, 182, 182);
 		contentPane.add(logoPanel);
+		logoPanel.setBackground(new Color(0,0,0,0));
 		Utils.setBackground(logoPanel, "src/images/logo2.png");
+		Utils.setBackground(this, "src/images/homeBackgroundBlur.jpg");
 	}
 	
 	

@@ -16,8 +16,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
-public class EndGame extends JFrame {
+public class EndGame extends BaseFrame {
 
 	private JPanel contentPane;
 
@@ -33,6 +34,8 @@ public class EndGame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		
 		JLabel labelGameOver = new JLabel("GAME OVER");
 		labelGameOver.setFont(new Font("Tahoma", Font.BOLD, 60));
 		labelGameOver.setBounds(194, 62, 376, 86);
@@ -40,27 +43,29 @@ public class EndGame extends JFrame {
 		
 		JLabel labelScore = new JLabel("Your Score is:");
 		labelScore.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelScore.setBounds(84, 194, 154, 30);
+		labelScore.setBounds(313, 194, 154, 30);
 		contentPane.add(labelScore);
 		
 		JLabel labelHighscore = new JLabel("Your High Score is:");
 		labelHighscore.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelHighscore.setBounds(26, 235, 212, 30);
+		labelHighscore.setBounds(255, 235, 212, 30);
 		contentPane.add(labelHighscore);
 		
 		JLabel labelScoreValue = new JLabel(String.valueOf(score));
 		labelScoreValue.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelScoreValue.setBounds(248, 196, 46, 27);
+		labelScoreValue.setBounds(477, 196, 46, 27);
 		contentPane.add(labelScoreValue);
 		
 		UserEntity user = new UserDataAccess().getUser(Session.getUserId());
 		
 		JLabel labelHighScoreValue = new JLabel(String.valueOf(user.getHighScore()));
 		labelHighScoreValue.setFont(new Font("Tahoma", Font.BOLD, 22));
-		labelHighScoreValue.setBounds(248, 240, 46, 22);
+		labelHighScoreValue.setBounds(477, 239, 46, 22);
 		contentPane.add(labelHighScoreValue);
 		
 		JButton buttonPlayAgain = new JButton("PLAY AGAIN");
+		buttonPlayAgain.setBackground(Color.BLACK);
+		buttonPlayAgain.setForeground(Color.WHITE);
 		buttonPlayAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -76,8 +81,44 @@ public class EndGame extends JFrame {
 		
 		
 		JButton btnNewButton_1 = new JButton("LOGOUT");
+		btnNewButton_1.setBackground(Color.BLACK);
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logout();
+				
+			}
+		});
 		btnNewButton_1.setBounds(10, 352, 154, 53);
 		contentPane.add(btnNewButton_1);
-			
-	}}
+		
+		JButton btnNewButton = new JButton("CHOOSE ANOTHER LEVEL/CATEGORY");
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setBackground(Color.BLACK);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				choose();
+			}
+		});
+		btnNewButton.setBounds(269, 352, 254, 53);
+		contentPane.add(btnNewButton);
+		
+		showBackgroundImage();
+	}
+	public void logout() {
+	this.setVisible(false);
+	
+	Home home=new Home();
+	home.show();
+	Session.logout();
+	}
+
+	public void choose() {
+		setVisible(false);
+		Choose choose=new Choose();
+		choose.setVisible(true);
+		
+	}
+	
+	}
 		

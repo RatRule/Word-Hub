@@ -17,7 +17,7 @@ import java.awt.Color;
 
 public class Home {
 
-	private JFrame frame;
+	private BaseFrame frame;
 
 	/**
 	 * Launch the application.
@@ -50,7 +50,7 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new BaseFrame();
 		frame.setBackground(SystemColor.desktop);
 		frame.getContentPane().setBackground(SystemColor.desktop);
 		frame.setBounds(100, 100, 800, 454);

@@ -18,8 +18,9 @@ import logic.Session;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
-public class GamePlay extends JFrame {
+public class GamePlay extends BaseFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldWord;
@@ -41,6 +42,8 @@ public class GamePlay extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		
 		JLabel labelYourScore = new JLabel("YOUR SCORE : ");
 		labelYourScore.setFont(new Font("Tahoma", Font.BOLD, 18));
 		labelYourScore.setBounds(10, 34, 136, 31);
@@ -48,7 +51,7 @@ public class GamePlay extends JFrame {
 		
 		JLabel labelHighScore = new JLabel("HIGH SCORE:\r\n");
 		labelHighScore.setFont(new Font("Tahoma", Font.BOLD, 14));
-		labelHighScore.setBounds(10, 11, 136, 14);
+		labelHighScore.setBounds(10, 11, 97, 14);
 		contentPane.add(labelHighScore);
 		
 		final JLabel clockLabel = new JLabel("00:00");
@@ -57,11 +60,14 @@ public class GamePlay extends JFrame {
 		contentPane.add(clockLabel);
 		
 		final JLabel labelWord = new JLabel("New label");
-		labelWord.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelWord.setFont(new Font("Tahoma", Font.ITALIC, 38));
 		labelWord.setBounds(185, 135, 380, 76);
 		contentPane.add(labelWord);
 		
 		textFieldWord = new JTextField();
+		textFieldWord.setFont(new Font("Tahoma", Font.BOLD, 18));
+		textFieldWord.setForeground(Color.WHITE);
+		textFieldWord.setBackground(Color.BLACK);
 		textFieldWord.setBounds(185, 289, 380, 39);
 		contentPane.add(textFieldWord);
 		textFieldWord.setColumns(10);
@@ -77,6 +83,8 @@ public class GamePlay extends JFrame {
 		
 		
 		JButton checkButton = new JButton("Check");
+		checkButton.setForeground(Color.WHITE);
+		checkButton.setBackground(Color.BLACK);
 		checkButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(gmLogic.checkWord(textFieldWord.getText())) {
@@ -92,10 +100,13 @@ public class GamePlay extends JFrame {
 		UserEntity user = new UserDataAccess().getUser(Session.getUserId());
 		
 		JLabel labelHighScoreValue = new JLabel(String.valueOf(user.getHighScore()));
-		labelHighScoreValue.setBounds(116, 7, 46, 27);
+		labelHighScoreValue.setFont(new Font("Tahoma", Font.BOLD, 14));
+		labelHighScoreValue.setBounds(116, 5, 46, 27);
 		contentPane.add(labelHighScoreValue);
 		
-		ClockTimer timer=new ClockTimer(0,2,0,0);
+		
+		
+		final ClockTimer timer=new ClockTimer(0,2,0,0);
 		timer.startTimer();
 		timer.setScale(1);
 		timer.setClockTimerListener(new ClockTimerListener() {
@@ -128,7 +139,23 @@ public class GamePlay extends JFrame {
 				
 				
 			}
+			
 		});
+		JButton backButton = new JButton("<");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				Choose choose=new Choose();
+				choose.setVisible(true);
+				timer.pauseTimer();
+				
+			}
+		});
+		backButton.setBackground(Color.BLACK);
+		backButton.setForeground(Color.WHITE);
+		backButton.setBounds(10, 374, 46, 31);
+		contentPane.add(backButton);
 		
+		showBackgroundImage();
 	}
 }
