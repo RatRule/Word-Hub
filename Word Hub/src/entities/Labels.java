@@ -4,7 +4,8 @@ public class Labels {
 	
 	public static class Category{
 		public final static String CATEGORY1 = "ANIMALS";
-		public final static String CATEGORY2 = "BIRDS";
+		public final static String CATEGORY2 = "COUNTRIES";
+		public final static String CATEGORY3 = "SPORTS";
 	}
 	
 	public static class Levels{
