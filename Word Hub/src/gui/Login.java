@@ -133,9 +133,15 @@ public class Login extends JFrame {
 			boolean userValid=userLogic.isUserValid(loginField.getText(),String.valueOf(passwordField.getPassword()));
 			if(!userValid){
 				label.setText("Incorrect username or password");
-			}else {
-				Session.setUserId(loginField.getText());
-				login();
+				
+			}
+			else {
+				if((loginField.getText()).equals("admin")&&(passwordField.getText()).equals("admin")) {
+					adminLogin();
+				} else {
+					Session.setUserId(loginField.getText());
+					login();
+				}
 			}
 		}
 		public void back() {
@@ -151,6 +157,13 @@ public class Login extends JFrame {
 			
 			MainMenu menu=new MainMenu();
 			menu.show();
+		}
+		
+		public void adminLogin() {
+			this.setVisible(false);
+			
+			AdminPage admin=new AdminPage();
+			admin.setVisible(true);
 		}
 		public void changeLabel(String label) {
 			lblLoginToWordhub.setText(label);
